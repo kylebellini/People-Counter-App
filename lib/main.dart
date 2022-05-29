@@ -29,6 +29,7 @@ class _HomePageState extends State<HomePage> {
   String wentInMessage = 'Entrou';
   String wentOutMessage = 'Saiu';
   int peopleAmount = 0;
+  int peopleLimit = 10;
 
   void removePerson() {
     setState(() {
@@ -72,9 +73,11 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                  onPressed: addPerson,
+                  onPressed: peopleAmount == peopleLimit ? null : addPerson,
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.lightBlue,
+                      backgroundColor: peopleAmount == peopleLimit
+                          ? Colors.red
+                          : Colors.lightBlue,
                       fixedSize: const Size(100, 50),
                       primary: Colors.grey[850],
                       shape: RoundedRectangleBorder(
@@ -90,9 +93,10 @@ class _HomePageState extends State<HomePage> {
                 width: 30,
               ),
               TextButton(
-                  onPressed: removePerson,
+                  onPressed: peopleAmount == 0 ? null : removePerson,
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.lightBlue,
+                      backgroundColor:
+                          peopleAmount == 0 ? Colors.red : Colors.lightBlue,
                       fixedSize: const Size(100, 50),
                       primary: Colors.grey[850],
                       shape: RoundedRectangleBorder(
