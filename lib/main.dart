@@ -26,8 +26,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String appTitle = 'Contador de Pessoas';
   String welcomeMessage = 'Seja bem-vindo(a), pode entrar!';
-  String wentInMessage = 'Entrou';
-  String wentOutMessage = 'Saiu';
+  String wentInMessage = 'Entrar';
+  String wentOutMessage = 'Sair';
+  String maxPeopleMessage = 'Lotado';
   int peopleAmount = 0;
   int peopleLimit = 10;
 
@@ -83,7 +84,9 @@ class _HomePageState extends State<HomePage> {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(15))),
                   child: Text(
-                    wentInMessage,
+                    peopleAmount == peopleLimit
+                        ? maxPeopleMessage
+                        : wentInMessage,
                     style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
